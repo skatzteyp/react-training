@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import TodoAdd from './TodoAdd';
 import TodoList from './TodoList';
 
-const Todo = () => (
-  <div className="todo">
-    <TodoAdd />
-    <TodoList />
-  </div>
-);
+class Todo extends Component {
+  render() {
+    return (
+      <div className="todo">
+        <TodoAdd />
+        <TodoList />
+      </div>
+    );
+  }
+}
 
 export default Todo;
