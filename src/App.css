@@ -38,7 +38,7 @@
   border-bottom: none;
 }
 
-.todo-list-item-delete {
+.todo-item-delete {
   background: none;
   border: none;
   color: red;
