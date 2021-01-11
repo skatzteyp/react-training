@@ -1,8 +1,8 @@
 import React from 'react';
 
-const TodoItem = ({ todo }) => {
+const TodoItem = ({ todo, onDelete }) => {
   const handleDelete = name => {
-    console.log(`delete ${name}`);
+    onDelete(name);
   };
 
   return (

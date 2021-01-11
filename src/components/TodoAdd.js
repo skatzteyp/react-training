@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-const TodoAdd = () => {
+const TodoAdd = ({ onAdd }) => {
   const [name, setName] = useState('');
 
   const handleAdd = () => {
-    console.log(`Add ${name}`);
+    onAdd(name);
   };
 
   const handleChange = name => {

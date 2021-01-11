@@ -12,14 +12,20 @@ const todoItems = [
   'Go toSleep'
 ];
 
-const TodoList = () => (
-  <ul className="todo-list">
-    {todoItems.map(item => (
-      <li key={item} className="todo-list-item">
-        <TodoItem todo={item} />
-      </li>
-    ))}
-  </ul>
-);
+const TodoList = () => {
+  const handleDelete = name => {
+    console.log(`Delete ${name}`);
+  };
+
+  return (
+    <ul className="todo-list">
+      {todoItems.map(item => (
+        <li key={item} className="todo-list-item">
+          <TodoItem todo={item} onDelete={handleDelete} />
+        </li>
+      ))}
+    </ul>
+  );
+};
 
 export default TodoList;
