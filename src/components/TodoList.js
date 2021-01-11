@@ -2,26 +2,20 @@ import React from 'react';
 
 import TodoItem from './TodoItem';
 
-const todoItems = [
-  'Wake up',
-  'Eat Breakfast',
-  'Take a Bath',
-  'Go to School',
-  'Learn Something',
-  'Go Home',
-  'Go toSleep'
-];
-
-const TodoList = () => {
+const TodoList = ({ items, onDelete }) => {
   const handleDelete = name => {
-    console.log(`Delete ${name}`);
+    onDelete(name);
   };
+
+  if (items.length === 0) {
+    return <p>You have no items in your list.</p>;
+  }
 
   return (
     <ul className="todo-list">
-      {todoItems.map(item => (
+      {items.map(item => (
         <li key={item} className="todo-list-item">
-          <TodoItem todo={item} onDelete={handleDelete} />
+          <TodoItem todo={item} onDelete={e => handleDelete(e)} />
         </li>
       ))}
     </ul>
