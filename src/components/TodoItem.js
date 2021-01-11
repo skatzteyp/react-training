@@ -1,8 +1,8 @@
 import React from 'react';
 
-const TodoItem = () => (
+const TodoItem = ({ todo }) => (
   <>
-    <p>Todo 1</p>
+    <p>{todo}</p>
     <button className="todo-item-delete">Delete</button>
   </>
 );
