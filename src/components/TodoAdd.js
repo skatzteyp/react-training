@@ -7,8 +7,9 @@ class TodoAdd extends Component {
 
   handleAdd() {
     const { name } = this.state;
+    const { onAdd } = this.props;
 
-    console.log(`Add ${name}`);
+    onAdd(name);
   }
 
   handleChange(name) {

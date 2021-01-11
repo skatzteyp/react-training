@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 
 class TodoItem extends Component {
   handleDelete(name) {
-    console.log(`delete ${name}`);
+    const { onDelete } = this.props;
+
+    onDelete(name);
   }
 
   render() {
-    const { todo } = this.props;
+    const { todo, onDelete } = this.props;
 
     return (
       <>
         <p>{todo}</p>
-        <button
-          className="todo-item-delete"
-          onClick={() => this.handleDelete(todo)}
-        >
+        <button className="todo-item-delete" onClick={() => onDelete(todo)}>
           Delete
         </button>
       </>

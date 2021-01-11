@@ -4,10 +4,14 @@ import TodoAdd from './TodoAdd';
 import TodoList from './TodoList';
 
 class Todo extends Component {
+  handleTodoAdd(name) {
+    console.log(`Add ${name}`);
+  }
+
   render() {
     return (
       <div className="todo">
-        <TodoAdd />
+        <TodoAdd onAdd={e => this.handleTodoAdd(e)} />
         <TodoList />
       </div>
     );
