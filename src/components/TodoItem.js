@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 
 class TodoItem extends Component {
   render() {
+    const { todo } = this.props;
+
     return (
       <>
-        <p>Todo 1</p>
+        <p>{todo}</p>
         <button className="todo-item-delete">Delete</button>
       </>
     );
