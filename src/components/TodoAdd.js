@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const TodoAdd = () => {
+  const [name, setName] = useState('');
+
   const handleAdd = () => {
-    console.log('test');
+    console.log(`Add ${name}`);
   };
 
   const handleChange = name => {
-    console.log(name);
+    setName(name);
   };
 
   return (
@@ -14,6 +16,7 @@ const TodoAdd = () => {
       <input
         type="text"
         className="todo-add-input"
+        value={name}
         onChange={e => handleChange(e.target.value)}
       />
       <button className="todo-add-button" onClick={handleAdd}>
