@@ -12,6 +12,18 @@ const Sidebar = () => (
         <Link to="/news">News</Link>
       </li>
       <li>
+        <Link to="/news/news-1/entertainment">News 1</Link>
+      </li>
+      <li>
+        <Link to="/news/news-2">News 2</Link>
+      </li>
+      <li>
+        <Link to="/news/news-3">News 3</Link>
+      </li>
+      <li>
+        <Link to="/news/news-4">News 4</Link>
+      </li>
+      <li>
         <Link to="/about">About</Link>
       </li>
     </ul>

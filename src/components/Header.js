@@ -1,13 +1,20 @@
 import { Switch, Route } from 'react-router-dom';
 
-const Header = () => (
-  <header>
-    <Switch>
-      <Route path="/news">News</Route>
-      <Route path="/about">About</Route>
-      <Route path="/">Top</Route>
-    </Switch>
-  </header>
-);
+import HeaderText from './HeaderText';
+
+import './Header.css';
+
+const Header = () => {
+  return (
+    <header className="header">
+      <Switch>
+        <Route path="/:page">
+          <HeaderText />
+        </Route>
+        <Route path="/">TOP</Route>
+      </Switch>
+    </header>
+  );
+};
 
 export default Header;
