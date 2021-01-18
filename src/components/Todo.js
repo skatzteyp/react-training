@@ -8,7 +8,11 @@ const Todo = () => {
   const [items, setItems] = useState([]);
 
   async function getTodos() {
-    let todos = await axios.get('http://localhost:4000/todos');
+    let todos = await axios.get('http://localhost:4000/todos', {
+      headers: {
+        Authorization: localStorage.getItem('token')
+      }
+    });
 
     setItems(todos.data);
   }
@@ -18,10 +22,18 @@ const Todo = () => {
   }, []);
 
   const handleTodoAdd = async name => {
-    await axios.post('http://localhost:4000/todos', {
-      title: name,
-      description: name
-    });
+    await axios.post(
+      'http://localhost:4000/todos',
+      {
+        title: name,
+        description: name
+      },
+      {
+        headers: {
+          Authorization: localStorage.getItem('token')
+        }
+      }
+    );
 
     getTodos();
   };
@@ -29,15 +41,29 @@ const Todo = () => {
   const handleDelete = async todo => {
     await axios({
       method: 'DELETE',
-      url: `http://localhost:4000/todos/${todo.id}`
+      url: `http://localhost:4000/todos/${todo.id}`,
+      headers: {
+        Authorization: localStorage.getItem('token')
+      }
     });
 
     getTodos();
   };
 
-  const handleEdit = todo => {
-    console.log(todo);
-  }
+  const handleEdit = async todo => {
+    await axios({
+      method: 'PUT',
+      url: `http://localhost:4000/todos/${todo.id}`,
+      data: {
+        ...todo
+      },
+      headers: {
+        Authorization: localStorage.getItem('token')
+      }
+    });
+
+    getTodos();
+  };
 
   return (
     <div className="todo">
