@@ -2,7 +2,7 @@ import React from 'react';
 
 import TodoItem from './TodoItem';
 
-const TodoList = ({ items, onDelete }) => {
+const TodoList = ({ items, onDelete, onEdit }) => {
   const handleDelete = name => {
     onDelete(name);
   };
@@ -14,8 +14,8 @@ const TodoList = ({ items, onDelete }) => {
   return (
     <ul className="todo-list">
       {items.map(item => (
-        <li key={item} className="todo-list-item">
-          <TodoItem todo={item} onDelete={e => handleDelete(e)} />
+        <li key={item.id} className="todo-list-item">
+          <TodoItem todo={item} onDelete={e => handleDelete(e)} onEdit={onEdit} />
         </li>
       ))}
     </ul>

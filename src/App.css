@@ -34,6 +34,26 @@
   border-bottom: 1px solid #888;
 }
 
+.todo-name {
+  flex-basis: 70%;
+}
+
+.todo-name.is-edit p {
+  display: none;
+}
+
+.todo-name input {
+  margin: 1em 0;
+  display: none;
+  font-size: 16px;
+  border: none;
+  padding: 0;
+}
+
+.todo-name.is-edit input {
+  display: block;
+}
+
 .todo-list-item:last-child {
   border-bottom: none;
 }
