@@ -26,13 +26,13 @@ const Todo = () => {
     getTodos();
   };
 
-  const handleDelete = todo => {
-    console.log(todo);
-
-    axios({
+  const handleDelete = async todo => {
+    await axios({
       method: 'DELETE',
       url: `http://localhost:4000/todos/${todo.id}`
     });
+
+    getTodos();
   };
 
   const handleEdit = todo => {
