@@ -1,6 +1,7 @@
 import React from 'react';
 
 import TodoItem from './TodoItem';
+import TodoFooter from './TodoFooter';
 
 const TodoList = ({ items, onDelete, onEdit }) => {
   const handleDelete = name => {
@@ -12,13 +13,20 @@ const TodoList = ({ items, onDelete, onEdit }) => {
   }
 
   return (
-    <ul className="todo-list">
-      {items.map(item => (
-        <li key={item.id} className="todo-list-item">
-          <TodoItem todo={item} onDelete={e => handleDelete(e)} onEdit={onEdit} />
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul className="todo-list">
+        {items.map(item => (
+          <li key={item.id} className="todo-list-item">
+            <TodoItem
+              todo={item}
+              onDelete={e => handleDelete(e)}
+              onEdit={onEdit}
+            />
+          </li>
+        ))}
+      </ul>
+      <TodoFooter todos={items} />
+    </>
   );
 };
 
