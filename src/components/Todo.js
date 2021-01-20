@@ -5,12 +5,12 @@ import TodoList from './TodoList';
 import useTodo from '../hooks/useTodo';
 
 const Todo = () => {
-  const { todos, createTodo, deleteTodo, editTodo } = useTodo();
+  const { createTodo, deleteTodo, editTodo } = useTodo();
 
   return (
     <div className="todo">
       <TodoAdd onAdd={createTodo} />
-      <TodoList items={todos} onDelete={deleteTodo} onEdit={editTodo} />
+      <TodoList onDelete={deleteTodo} onEdit={editTodo} />
     </div>
   );
 };

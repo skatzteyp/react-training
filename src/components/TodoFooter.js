@@ -1,8 +1,8 @@
 import TodoPagination from './TodoPagination';
 
-const TodoFooter = ({ todos }) => (
+const TodoFooter = () => (
   <footer>
-    <TodoPagination count={todos.length} />
+    <TodoPagination />
     <small>Made in LIG</small>
   </footer>
 );

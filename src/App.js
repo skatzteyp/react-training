@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
+import { Provider } from 'react-redux';
 import axios from 'axios';
 
-import './App.css';
-
 import Todo from './components/Todo';
+import store from './redux/store';
+import './App.css';
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -19,7 +20,11 @@ function App() {
   }, []);
 
   if (isLogin) {
-    return <Todo />;
+    return (
+      <Provider store={store}>
+        <Todo />
+      </Provider>
+    );
   } else {
     return <p>Loading..</p>;
   }

@@ -1,21 +1,24 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import TodoItem from './TodoItem';
 import TodoFooter from './TodoFooter';
 
-const TodoList = ({ items, onDelete, onEdit }) => {
+const TodoList = ({ onDelete, onEdit }) => {
+  const { todos } = useSelector(store => store);
+
   const handleDelete = name => {
     onDelete(name);
   };
 
-  if (items.length === 0) {
+  if (todos.length === 0) {
     return <p>You have no items in your list.</p>;
   }
 
   return (
     <>
       <ul className="todo-list">
-        {items.map(item => (
+        {todos.map(item => (
           <li key={item.id} className="todo-list-item">
             <TodoItem
               todo={item}
@@ -25,7 +28,7 @@ const TodoList = ({ items, onDelete, onEdit }) => {
           </li>
         ))}
       </ul>
-      <TodoFooter todos={items} />
+      <TodoFooter />
     </>
   );
 };
