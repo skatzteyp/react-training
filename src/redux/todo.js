@@ -1,64 +1,55 @@
-const ADD_TODO = 'todo-app/todo/ADD_TODO';
-const DELETE_TODO = 'todo-app/todo/DELETE_TODO';
-const EDIT_TODO = 'todo-app/todo/EDIT_TODO';
+import * as todoRepo from '../repositories/todo';
+
+const SET_TODOS = 'todo-app/todo/SET_TODOS';
 
 const initialState = {
-  todos: [
-    {
-      id: 1,
-      title: 'Test',
-      description: 'Test'
-    },
-    { id: 2, title: 'Test 2', description: 'Test 2' }
-  ]
+  todos: []
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case ADD_TODO:
-      let todo = action.payload;
-      todo.id = state.todos.length + 1;
-
+    case SET_TODOS:
       return {
-        todos: [...state.todos, todo]
-      };
-    case DELETE_TODO:
-      let todos = state.todos.filter(todo => todo.id !== action.payload);
-
-      return {
-        todos: [...todos]
-      };
-    case EDIT_TODO:
-      let todo2 = state.todos.find(todo => todo.id === action.payload.id);
-      todo2.title = action.payload.title;
-      todo2.description = action.payload.description;
-      return {
-        todos: [...state.todos]
+        todos: [...action.payload]
       };
     default:
       return state;
   }
 }
 
-function addTodo(todo) {
+function getTodos() {
+  return async function(dispatch) {
+    let todos = await todoRepo.getTodos();
+    dispatch(setTodos(todos));
+  };
+}
+
+function setTodos(todos) {
   return {
-    type: ADD_TODO,
-    payload: todo
+    type: SET_TODOS,
+    payload: todos
+  };
+}
+
+function addTodo(todo) {
+  return async function(dispatch) {
+    await todoRepo.createTodo(todo);
+    dispatch(getTodos());
   };
 }
 
 function deleteTodo(id) {
-  return {
-    type: DELETE_TODO,
-    payload: id
+  return async function(dispatch) {
+    await todoRepo.deleteTodo({ id });
+    dispatch(getTodos());
   };
 }
 
 function editTodo(todo) {
-  return {
-    type: EDIT_TODO,
-    payload: todo
+  return async function(dispatch) {
+    await todoRepo.editTodo(todo);
+    dispatch(getTodos());
   };
 }
 
-export { addTodo, deleteTodo, editTodo };
+export { addTodo, deleteTodo, editTodo, setTodos, getTodos };

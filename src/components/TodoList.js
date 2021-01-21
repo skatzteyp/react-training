@@ -1,15 +1,21 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import TodoItem from './TodoItem';
 import TodoFooter from './TodoFooter';
+import { getTodos } from '../redux/todo';
 
 const TodoList = ({ onDelete, onEdit }) => {
+  const dispatch = useDispatch();
   const { todos } = useSelector(store => store);
 
   const handleDelete = name => {
     onDelete(name);
   };
+
+  useEffect(() => {
+    dispatch(getTodos());
+  }, [dispatch]);
 
   if (todos.length === 0) {
     return <p>You have no items in your list.</p>;
