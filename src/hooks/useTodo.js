@@ -1,35 +1,27 @@
-import { useState, useEffect } from 'react';
-
-import * as todoRepo from '../repositories/todo';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import * as actions from '../redux/todo';
 
 export default function useTodo() {
-  const [todos, setTodos] = useState([]);
+  const dispatch = useDispatch();
+  const { todos } = useSelector(store => store);
 
   useEffect(() => {
-    refresh();
+    if (todos.length === 0) {
+      dispatch(actions.getTodos());
+    }
   }, []);
 
-  async function refresh() {
-    let todos = await todoRepo.getTodos();
-    setTodos(todos);
-  }
-
-  const createTodo = async name => {
-    await todoRepo.createTodo({
-      title: name,
-      description: name
-    });
-    refresh();
+  const createTodo = name => {
+    dispatch(actions.addTodo({ title: name, description: name }));
   };
 
-  const deleteTodo = async todo => {
-    await todoRepo.deleteTodo(todo);
-    refresh();
+  const deleteTodo = todo => {
+    dispatch(actions.deleteTodo(todo.id));
   };
 
-  const editTodo = async todo => {
-    await todoRepo.editTodo(todo);
-    refresh();
+  const editTodo = todo => {
+    dispatch(actions.editTodo(todo));
   };
 
   return {

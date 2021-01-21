@@ -1,14 +1,13 @@
-import { useDispatch } from 'react-redux';
 import React, { useState } from 'react';
 
-import { addTodo } from '../redux/todo';
+import useTodo from '../hooks/useTodo';
 
 const TodoAdd = () => {
-  const dispatch = useDispatch();
+  const { createTodo } = useTodo();
   const [name, setName] = useState('');
 
   const handleAdd = () => {
-    dispatch(addTodo({ title: name, description: name }));
+    createTodo(name);
   };
 
   const handleChange = name => {

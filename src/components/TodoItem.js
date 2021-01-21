@@ -1,26 +1,23 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 
-import { deleteTodo, editTodo } from '../redux/todo';
+import useTodo from '../hooks/useTodo';
 
 const TodoItem = ({ todo }) => {
-  const dispatch = useDispatch();
+  const { deleteTodo, editTodo } = useTodo();
   const [edit, setEdit] = useState(false);
   const [name, setName] = useState(todo.title);
 
   const handleDelete = () => {
-    dispatch(deleteTodo(todo.id));
+    deleteTodo(todo);
   };
 
   const handleSave = () => {
     if (edit) {
-      dispatch(
-        editTodo({
-          id: todo.id,
-          title: name,
-          description: name
-        })
-      );
+      editTodo({
+        id: todo.id,
+        title: name,
+        description: name
+      });
     }
 
     setEdit(!edit);

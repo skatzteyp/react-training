@@ -1,7 +1,7 @@
-import { useSelector } from 'react-redux';
+import useTodo from '../hooks/useTodo';
 
 const TodoPagination = () => {
-  const { todos } = useSelector(store => store);
+  const { todos } = useTodo();
 
   return <p>You have {todos.length} todos.</p>;
 };
